@@ -1,222 +1,313 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trainingsapp PRO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0E0F11;
-            --bg2: #161719;
-            --bg3: #1E2024;
-            --border: #2A2C31;
-            --text: #F0F0EE;
-            --text2: #9A9B9F;
-            --accent: #C8F23A;
-            --claude: #7c4dff;
-            --font: 'Syne', sans-serif;
-            --mono: 'DM Mono', monospace;
-            --r: 12px;
-        }
-
-        body {
-            font-family: var(--font);
-            background: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding-bottom: 50px;
-        }
-
-        /* Navigation */
-        .nav {
-            display: flex;
-            background: var(--bg2);
-            border-bottom: 1px solid var(--border);
-            padding: 5px;
-            overflow-x: auto;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .nav button {
-            background: none;
-            border: none;
-            color: var(--text2);
-            padding: 10px 15px;
-            font-size: 11px;
-            font-weight: 700;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .nav button.active {
-            color: var(--accent);
-            border-bottom: 2px solid var(--accent);
-        }
-
-        /* Container & Cards */
-        .container { padding: 20px; }
-        
-        .card {
-            background: var(--bg2);
-            border: 1px solid var(--border);
-            border-radius: var(--r);
-            padding: 16px;
-            margin-bottom: 15px;
-        }
-
-        /* Button Styles */
-        .btn-primary {
-            background: var(--accent);
-            color: #000;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 800;
-            width: 100%;
-            cursor: pointer;
-        }
-
-        .btn-ai {
-            background: var(--claude);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-weight: 800;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        /* Inputs */
-        input {
-            background: var(--bg3);
-            border: 1px solid var(--border);
-            color: white;
-            padding: 8px;
-            border-radius: 6px;
-            font-family: var(--mono);
-            width: 100%;
-            margin-bottom: 10px;
-        }
-
-        #ai-response {
-            font-size: 13px;
-            line-height: 1.6;
-            color: var(--text2);
-            margin-top: 15px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trainingsapp PRO + AI Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0E0F11;--bg2:#161719;--bg3:#1E2024;
+  --border:#2A2C31;--border2:#353840;
+  --text:#F0F0EE;--text2:#9A9B9F;--text3:#5A5C62;
+  --accent:#C8F23A;--accent2:#A8D420;
+  --claude:#7c4dff;
+  --push:#FF6B4A;--pull:#4A9EFF;--beine:#FFB84A;
+  --br:#FF4A8A;--arme:#4AFFB8;--cardio:#4AFFD4;
+  --core:#B84AFF;--mob:#FFD44A;--rest:#5A5C62;
+  --z13:#4AFFD4;--z45:#FF6B4A;
+  --r:10px;--font:'Syne',sans-serif;--mono:'DM Mono',monospace;
+}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:50px}
+.nav{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);padding:0 .75rem;gap:1px;overflow-x:auto;position:sticky;top:0;z-index:100}
+.nb{padding:12px 12px;font-family:var(--font);font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;background:none;border:none;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap}
+.nb:hover{color:var(--text2)}.nb.on{color:var(--accent);border-bottom-color:var(--accent)}
+.hdr{padding:1.25rem 1.25rem .75rem;border-bottom:1px solid var(--border)}
+.hdr-t{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.hdr-s{font-size:11px;color:var(--text3);font-family:var(--mono);margin-top:3px;letter-spacing:.04em}
+.mets{display:grid;gap:8px;padding:1rem 1.25rem}
+.met{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:11px 13px}
+.ml{font-size:10px;color:var(--text3);font-family:var(--mono);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px}
+.mv{font-size:19px;font-weight:700}.ms{font-size:11px;color:var(--text3);margin-top:2px}
+.pb{height:5px;background:var(--bg3);border-radius:3px;overflow:hidden;margin-top:7px}
+.pf{height:100%;border-radius:3px;transition:width .5s}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;padding:0 1.25rem .75rem}
+.db{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:9px 4px;text-align:center;cursor:pointer;transition:border-color .15s}
+.db:hover{border-color:var(--border2)}.db.on{border:1.5px solid var(--accent);background:#111A04}.db.dn{border-color:#2A4008;background:#0D1205}
+.ds{font-size:10px;color:var(--text3);font-family:var(--mono)}.dn2{font-size:11px;font-weight:700;margin:3px 0}.dd{width:6px;height:6px;border-radius:50%;margin:4px auto 0}
+.det{padding:0 1.25rem 1.5rem}
+.dh{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.dt{font-size:19px;font-weight:800;letter-spacing:-.01em}.ds2{font-size:12px;color:var(--text3);font-family:var(--mono);margin-top:3px}
+.tag{display:inline-block;font-size:10px;font-weight:600;padding:2px 7px;border-radius:4px;margin:2px 2px 2px 0;font-family:var(--mono)}
+.sl{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);font-family:var(--mono);margin:16px 0 7px;padding-bottom:5px;border-bottom:1px solid var(--border)}
+.ex{display:flex;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)}
+.en{flex:1;font-size:13px;font-weight:500}.eno{font-size:11px;color:var(--text3);margin-top:2px;line-height:1.4}
+.es{font-size:11px;color:var(--text2);min-width:78px;text-align:right;font-family:var(--mono);white-space:nowrap}
+.tip{background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--r);padding:11px 13px;margin-top:14px}
+.tl{font-size:12px;color:var(--text2);padding:2px 0}
+button{cursor:pointer;font-family:var(--font);border-radius:var(--r);border:1px solid var(--border2);background:transparent;color:var(--text2);padding:7px 13px;font-size:12px;font-weight:500;transition:all .15s}
+button:hover{background:var(--bg3);color:var(--text)}
+.ba{background:var(--accent)!important;color:#0E0F11!important;border-color:var(--accent)!important;font-weight:700!important}
+.bdone{border-color:#2A4008;color:#6AA020}.bdone.on{background:#111A04;color:var(--accent);border-color:var(--accent)}
+.brow{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
+.lw{padding:0 1.25rem 1.5rem}
+.ec{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.ech{padding:5px 10px;font-size:11px;font-weight:600;border-radius:6px;border:1px solid var(--border);background:var(--bg2);cursor:pointer;color:var(--text3);font-family:var(--mono);transition:all .15s}
+.ech.on{border-color:var(--accent);background:#111A04;color:var(--accent)}
+.lc{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1rem;margin-bottom:12px}
+.sr{display:grid;grid-template-columns:26px 1fr 1fr 26px;gap:6px;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)}
+.sn{font-size:11px;color:var(--text3);font-family:var(--mono);text-align:center}
+input[type=number],input[type=text],input[type=password],select{font-family:var(--mono);font-size:12px;padding:7px 9px;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--text);width:100%;margin-bottom:5px}
+.lh{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:9px 12px;margin-bottom:12px;font-size:11px;color:var(--text3);font-family:var(--mono);line-height:1.6}
+.btn-ai{background:var(--claude)!important; color:white!important; border:none!important; font-weight:800!important; width:100%; padding:12px; border-radius:var(--r); cursor:pointer; margin-top:10px}
+.ai-bubble{background:var(--bg3); padding:15px; border-radius:var(--r); font-size:13px; line-height:1.6; color:var(--text2); border-left:3px solid var(--claude)}
+</style>
 </head>
 <body>
 
-    <div class="nav">
-        <button onclick="showPage('plan')" id="btn-plan" class="active">Plan</button>
-        <button onclick="showPage('log')" id="btn-log">Loggen</button>
-        <button onclick="showPage('ai')" id="btn-ai">KI Coach</button>
-    </div>
+<div class="nav">
+  <button class="nb on" onclick="setPage('plan')">Wochenplan</button>
+  <button class="nb" onclick="setPage('log')">Loggen</button>
+  <button class="nb" onclick="setPage('zonen')">Zonen</button>
+  <button class="nb" onclick="setPage('gewicht')">Gewicht</button>
+  <button class="nb" onclick="setPage('prog')">Fortschritt</button>
+  <button class="nb" onclick="setPage('ai')" style="color:var(--claude)">KI Coach</button>
+</div>
 
-    <div class="container">
-        <!-- SEITE: PLAN -->
-        <div id="page-plan">
-            <h1 style="font-size: 24px; margin-bottom: 10px;">Dein Training</h1>
-            <div id="plan-list">
-                <!-- Wird per JS gefüllt -->
-            </div>
-        </div>
-
-        <!-- SEITE: LOGGEN -->
-        <div id="page-log" style="display:none;">
-            <div class="card">
-                <h3>Übung loggen</h3>
-                <input type="text" id="ex-name" placeholder="Name der Übung">
-                <input type="number" id="ex-weight" placeholder="Gewicht in kg">
-                <input type="number" id="ex-reps" placeholder="Wiederholungen">
-                <button class="btn-primary" onclick="saveWorkout()">Speichern</button>
-            </div>
-        </div>
-
-        <!-- SEITE: KI COACH -->
-        <div id="page-ai" style="display:none;">
-            <div class="card" style="border-left: 4px solid var(--claude);">
-                <div style="display:flex; justify-content: space-between;">
-                    <span style="color: var(--claude); font-weight: 800;">CLAUDE AI COACH</span>
-                    <button onclick="toggleKey()" style="font-size: 10px; background:none; border:1px solid #333; color: #555;">API KEY</button>
-                </div>
-                
-                <div id="key-input" style="display:none; margin-top:10px;">
-                    <input type="password" id="api-key" placeholder="sk-ant-..." onchange="localStorage.setItem('claude_key', this.value)">
-                </div>
-
-                <div id="ai-response">Klicke unten, um deine Daten zu analysieren.</div>
-                <button class="btn-ai" onclick="runAnalysis()">Analyse & Progression</button>
-            </div>
+<div id="pp"></div>
+<div id="pl" style="display:none"></div>
+<div id="pz" style="display:none"></div>
+<div id="pgw" style="display:none"></div>
+<div id="pr2" style="display:none"></div>
+<div id="pai" style="display:none">
+    <div class="hdr"><div class="hdr-t">KI Coach & Sync</div><div class="hdr-s">PLANUNG · ANALYSE · TAUSCH</div></div>
+    <div class="det" style="margin-top:15px">
+        <div class="lc">
+            <div id="ai-out" class="ai-bubble">Bereit. Ich habe Zugriff auf deinen kompletten Trainingsplan-Code.</div>
+            <input type="password" id="api-key" placeholder="Claude API Key hier einfügen" style="margin-top:15px">
+            <button class="btn-ai" id="ai-btn" onclick="runAI()">Update & Analyse anfordern</button>
         </div>
     </div>
+</div>
 
-    <script>
-        // Datenbank Simulation
-        let logs = JSON.parse(localStorage.getItem('workout_logs') || '[]');
+<script>
+// --- KOMPLETTER DATENSATZ ---
+const DAYS=[
+{s:"Mo",n:"Push",sub:"Brust · Schulter · Trizeps",c:"var(--push)",
+ tags:[{l:"Push",bg:"#3A1208",c:"var(--push)"},{l:"Kraft",bg:"#1A1240",c:"#8888FF"}],
+ ex:["Schrägbankdrücken KH","Dips mit Gewicht","Butterfly","Schulterdrücken KB","Seitheben","Trizeps Pulldown","Overhead Trizeps"],
+ secs:[
+  {l:"Aufwärmen + Mobility — 10 min",t:"mob",items:[{n:"Schulterkreisen + Bandpull-Aparts",note:"Rotatorenmanschette",s:"2×15"},{n:"Hip Flexor Stretch",note:"Hüfte öffnen",s:"2×30s"},{n:"Ankle Circles",note:"Achillessehne",s:"2×10je"},{n:"Aufwärmsätze 50%",note:"",s:"2×10"}]},
+  {l:"Brust — Priorität 1",t:"push",items:[{n:"Schrägbankdrücken KH",note:"wöchentlich +1–2 kg",s:"3×6–8"},{n:"Dips mit Gewicht",note:"Leicht vorne lehnen, Gürtel",s:"2×6–8"},{n:"Butterfly Kabel/Maschine",note:"Kontraktion halten",s:"2×12–15"}]},
+  {l:"Schulter",t:"push",items:[{n:"Schulterdrücken Kettlebell",note:"",s:"3×8–10"},{n:"Seitheben Kabel",note:"Rear Delt — nie weglassen",s:"3×15"}]},
+  {l:"Trizeps",t:"push",items:[{n:"Trizeps Pulldown Kabel",note:"",s:"4×10–12"},{n:"Overhead Trizeps Kabel",note:"Langen Kopf betonen",s:"4×10–12"}]},
+  {l:"Core — 8 min",t:"core",items:[{n:"Dead Bug",note:"",s:"3×8je"},{n:"Ab Wheel / Plank",note:"",s:"3×8–10"},{n:"Hollow Body Hold",note:"",s:"3×25s"}]},
+  {l:"Cool-down",t:"mob",items:[{n:"Doorframe Chest Stretch",note:"",s:"2×30s"},{n:"Triceps Stretch",note:"",s:"2×20s"}]},
+ ],tips:["Schrägbank zuerst — schwerste Sets wenn frisch","Dips: mehr Vorlehnen = mehr Brust","Trizeps zuletzt"]},
+{s:"Di",n:"Pull",sub:"Rücken · Bizeps · Rear Delts",c:"var(--pull)",
+ tags:[{l:"Pull",bg:"#0A1E3A",c:"var(--pull)"},{l:"Kraft",bg:"#1A1240",c:"#8888FF"}],
+ ex:["Klimmzüge","Langhantelrudern","Kabelrudern","Facepulls","Bizepscurls LH","Hammer Curls"],
+ secs:[
+  {l:"Aufwärmen + Mobility — 10 min",t:"mob",items:[{n:"Cat-Cow",note:"",s:"2×10"},{n:"Hip 90/90 Stretch",note:"",s:"2×30eje"},{n:"Ankle Dorsiflexion",note:"",s:"2×10je"}]},
+  {l:"Rücken — Priorität 1",t:"pull",items:[{n:"Klimmzüge (gewichtet)",note:"Absolut priorisieren",s:"5×max"},{n:"Langhantelrudern",note:"",s:"4×5–6"},{n:"Kabelrudern",note:"",s:"3×10–12"},{n:"Facepulls",note:"Schultergesundheit",s:"4×15–20"}]},
+  {l:"Bizeps",t:"pull",items:[{n:"Bizepscurls LH",note:"",s:"3×8–10"},{n:"Hammer Curls KH",note:"",s:"2×12"}]},
+  {l:"Lower Back Core — 8 min",t:"core",items:[{n:"Good Mornings",note:"",s:"3×12"},{n:"Back Extensions",note:"",s:"3×12–15"},{n:"Bird Dog",note:"",s:"3×8je"}]},
+  {l:"Cool-down",t:"mob",items:[{n:"Lat-Stretch",note:"",s:"2×30s"},{n:"Knie-zur-Brust",note:"",s:"2×20s"}]},
+ ],tips:["Klimmzüge immer zuerst","Facepulls nie skippen","Lower Back nach Rudern"]},
+{s:"Mi",n:"Cardio",sub:"Zone 1–3 · Laufen oder Fahrrad",c:"var(--cardio)",
+ tags:[{l:"Cardio",bg:"#0A2A20",c:"var(--cardio)"},{l:"Zone 1–3",bg:"#0A2A20",c:"var(--cardio)"}],
+ ex:["Laufen","Fahrrad"],
+ secs:[
+  {l:"Mobility Pre-Run — 10 min",t:"mob",items:[{n:"Hüftkreisen",note:"",s:"2×10je"},{n:"Leg Swings",note:"",s:"2×10je"},{n:"Wadendehnung",note:"Pflicht",s:"2×30s"},{n:"Kniehebelauf",note:"",s:"20m"}]},
+  {l:"Cardio Zone 1–3 — 40–50 min",t:"cardio",items:[{n:"Laufen / Fahrrad Zone 1–2",note:"Sprechen muss möglich bleiben",s:"30–40 min"},{n:"Letzte 5 min Zone 3",note:"optional",s:"5 min"}]},
+  {l:"Stabilität Core — 10 min",t:"core",items:[{n:"Plank",note:"",s:"3×45s"},{n:"Side Plank",note:"Knieschutz",s:"3×30eje"},{n:"Glute Bridge",note:"",s:"3×15"}]},
+  {l:"Post-Run Mobility",t:"mob",items:[{n:"Pigeon Pose",note:"",s:"2×45eje"},{n:"Achillessehne",note:"",s:"2×30s"},{n:"Foam Rolling",note:"",s:"3 min"}]},
+ ],tips:["Sprechen = Zone 2 Check","Lieber zu langsam als verletzt","Side Plank = wichtigste Übung gegen Läuferknie"]},
+{s:"Do",n:"Brust+Rücken",sub:"Horizontale Druck- und Zugbewegungen",c:"var(--br)",
+ tags:[{l:"Brust+Rücken",bg:"#2A0818",c:"var(--br)"},{l:"Kraft",bg:"#1A1240",c:"#8888FF"}],
+ ex:["KH Fliegende","Maschinendrücken","Kabelfliegende","Kabelrudern weit","Lat-Pulldown","Straight Arm Pulldown"],
+ secs:[
+  {l:"Aufwärmen",t:"mob",items:[{n:"Thoracic Rotation",note:"",s:"2×8je"},{n:"Arm Swings",note:"",s:"1 min"}]},
+  {l:"Brust",t:"push",items:[{n:"KH Fliegende flach",note:"",s:"3×12"},{n:"Maschinendrücken",note:"",s:"3×12–15"},{n:"Kabelfliegende",note:"",s:"3×15"}]},
+  {l:"Rücken",t:"pull",items:[{n:"Kabelrudern weit",note:"",s:"4×10"},{n:"Lat-Pulldown Untergriff",note:"",s:"3×10–12"},{n:"Straight Arm Pulldown",note:"",s:"3×12"}]},
+  {l:"Obliques Core — 8 min",t:"core",items:[{n:"Russian Twists",note:"",s:"3×15je"},{n:"Pallof Press",note:"",s:"3×10je"},{n:"Suitcase Carry",note:"",s:"3×20mje"}]},
+  {l:"Cool-down",t:"mob",items:[{n:"Chest Stretch",note:"",s:"2×30s"},{n:"Lat-Stretch",note:"",s:"2×20s"}]},
+ ],tips:["Volumentag — kein Max-Gewicht","Pallof Press = beste Anti-Rotation","Isolation heute"]},
+{s:"Fr",n:"Beine",sub:"Kniebeuge · Deadlift · Lunge",c:"var(--beine)",
+ tags:[{l:"Beine",bg:"#2A1A08",c:"var(--beine)"},{l:"Kraft",bg:"#1A1240",c:"#8888FF"}],
+ ex:["Kniebeuge LH","Romanian Deadlift","Bulgarische Split Squat","Beinpresse","Beinbeuger","Wadenheben"],
+ secs:[
+  {l:"Mobility Pflicht — 15 min",t:"mob",items:[{n:"Hip 90/90 + Rotation",note:"Pflicht vor Kniebeuge",s:"3×30eje"},{n:"Goblet Squat tief",note:"",s:"2×30s"},{n:"Cossack Squat",note:"",s:"2×5je"},{n:"Ankle Mobility",note:"Achillessehne",s:"2×10je"}]},
+  {l:"Hauptteil",t:"beine",items:[{n:"Kniebeuge LH",note:"5×5 — +2.5kg wenn alle Reps",s:"5×5"},{n:"Romanian Deadlift",note:"",s:"4×6–8"},{n:"Bulgarische Split Squat",note:"",s:"3×8–10je"},{n:"Beinpresse",note:"",s:"3×12"},{n:"Beinbeuger",note:"",s:"3×12"},{n:"Wadenheben",note:"Achillessehne stärken",s:"4×15–20"}]},
+  {l:"Lower Back + Stabilität",t:"core",items:[{n:"Jefferson Curl",note:"",s:"3×5"},{n:"Copenhagen Plank",note:"Knieschutz",s:"3×20eje"},{n:"Single Leg Glute Bridge",note:"",s:"3×12je"}]},
+  {l:"Post Leg Mobility",t:"mob",items:[{n:"Pigeon Pose",note:"",s:"2×45eje"},{n:"Lizard Pose",note:"",s:"2×30eje"},{n:"Foam Rolling Quads",note:"",s:"3 min"}]},
+ ],tips:["Kniebeuge 5×5","Bulgarische SS für Lauf-Knie","Wadenheben schützt Achillessehne"]},
+{s:"Sa",n:"Arme+HIIT",sub:"Bizeps · Trizeps · Zone 4–5",c:"var(--arme)",
+ tags:[{l:"Arme",bg:"#0A2A18",c:"var(--arme)"},{l:"Zone 4–5",bg:"#3A1208",c:"var(--push)"}],
+ ex:["Bizepscurl LH","Hammer Curls KH","Preacher Curl","Dips","Skull Crushers","Overhead Trizeps Kabel","Intervall Lauf/Fahrrad"],
+ secs:[
+  {l:"Aufwärmen",t:"mob",items:[{n:"Springseil / Joggen",note:"",s:"5 min"}]},
+  {l:"Bizeps",t:"pull",items:[{n:"Bizepscurl LH",note:"",s:"4×8–10"},{n:"Hammer Curls KH",note:"",s:"3×10–12"},{n:"Preacher Curl",note:"",s:"3×12"}]},
+  {l:"Trizeps",t:"push",items:[{n:"Dips",note:"",s:"4×max"},{n:"Skull Crushers",note:"",s:"3×10"},{n:"Overhead Trizeps Kabel",note:"",s:"3×12"}]},
+  {l:"Zone 4–5 HIIT",t:"cardio",items:[{n:"Intervall-Lauf / Fahrrad",note:"30s hart / 90s locker × 8–10",s:"20–30 min"}]},
+  {l:"Obliques + Mobility",t:"core",items:[{n:"Hanging Knee Raise",note:"",s:"3×12–15"},{n:"Wadendehnung + Achilles",note:"Pflicht",s:"2×30s"}]},
+ ],tips:["Zone 4–5 nach Armen","30s hart = nicht mehr sprechen","VO2max Ziel: 50+ nach 3 Monaten"]},
+{s:"So",n:"Regen.",sub:"Aktive Erholung · Vollkörper Mobility",c:"var(--rest)",
+ tags:[{l:"Rest",bg:"#1A1A1A",c:"var(--text3)"},{l:"Mobility",bg:"#2A2208",c:"var(--mob)"}],
+ ex:["Spaziergang"],
+ secs:[
+  {l:"Aktive Erholung",t:"rest",items:[{n:"Spaziergang / lockeres Rad",note:"Zone 1",s:"20–30 min"}]},
+  {l:"Vollkörper Mobility",t:"mob",items:[{n:"World's Greatest Stretch",note:"",s:"5je"},{n:"Pigeon Pose",note:"",s:"45eje"},{n:"Hip 90/90 Flow",note:"",s:"2×10je"},{n:"Achillessehne",note:"Pflicht",s:"2×30s"}]},
+  {l:"Core Mobility",t:"core",items:[{n:"Cat-Cow",note:"",s:"2×10"},{n:"Supine Twist",note:"",s:"2×30eje"}]},
+  {l:"Foam Rolling",t:"mob",items:[{n:"Waden + Achillessehne",note:"",s:"2 min"},{n:"Quads + Rücken",note:"",s:"3 min"}]},
+ ],tips:["Sonntag ist kein optionaler Tag","World's Greatest Stretch täglich ideal","Erholung ist Training"]},
+];
 
-        function showPage(pageId) {
-            document.getElementById('page-plan').style.display = pageId === 'plan' ? 'block' : 'none';
-            document.getElementById('page-log').style.display = pageId === 'log' ? 'block' : 'none';
-            document.getElementById('page-ai').style.display = pageId === 'ai' ? 'block' : 'none';
-            
-            document.querySelectorAll('.nav button').forEach(b => b.classList.remove('active'));
-            document.getElementById('btn-' + pageId).classList.add('active');
-        }
+// LOGIK-VARIABLEN
+const TC={mob:{bg:"#2A2208",c:"var(--mob)"},push:{bg:"#3A1208",c:"var(--push)"},pull:{bg:"#0A1E3A",c:"var(--pull)"},beine:{bg:"#2A1A08",c:"var(--beine)"},core:{bg:"#1E0A3A",c:"var(--core)"},cardio:{bg:"#0A2A20",c:"var(--cardio)"},rest:{bg:"#1A1A1A",c:"var(--text3)"}};
+const DNAMES=["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"];
+const SK_D="w_done_v1",SK_L="t_log_v3",SK_Z="z_log_v1",SK_GW="gw_log_v1",SK_GS="gw_set_v1";
 
-        function saveWorkout() {
-            const entry = {
-                name: document.getElementById('ex-name').value,
-                weight: document.getElementById('ex-weight').value,
-                reps: document.getElementById('ex-reps').value,
-                date: new Date().toISOString()
-            };
-            logs.push(entry);
-            localStorage.setItem('workout_logs', JSON.stringify(logs));
-            alert("Erfolg!");
-        }
+let done=new Set(),tlog={},zlog={},gwlog=[],gwSettings={startWeight:80,goalWeight:85};
+let pd=0,ld=0,aex=DAYS[0].ex[0],sets=[{kg:"",reps:""}];
 
-        function toggleKey() {
-            const el = document.getElementById('key-input');
-            el.style.display = el.style.display === 'none' ? 'block' : 'none';
-        }
+function loadData(){
+  try{const d=localStorage.getItem(SK_D);if(d)done=new Set(JSON.parse(d));}catch(e){}
+  try{const d=localStorage.getItem(SK_L);if(d)tlog=JSON.parse(d);}catch(e){}
+  try{const d=localStorage.getItem(SK_Z);if(d)zlog=JSON.parse(d);}catch(e){}
+  try{const d=localStorage.getItem(SK_GW);if(d)gwlog=JSON.parse(d);}catch(e){}
+  try{const d=localStorage.getItem(SK_GS);if(d)gwSettings=JSON.parse(d);}catch(e){}
+}
+function saveData(){
+  localStorage.setItem(SK_D,JSON.stringify([...done]));
+  localStorage.setItem(SK_L,JSON.stringify(tlog));
+  localStorage.setItem(SK_Z,JSON.stringify(zlog));
+  localStorage.setItem(SK_GW,JSON.stringify(gwlog));
+  localStorage.setItem(SK_GS,JSON.stringify(gwSettings));
+}
 
-        async function runAnalysis() {
-            const key = localStorage.getItem('claude_key');
-            if(!key) return alert("Bitte API Key hinterlegen!");
+function setPage(p){
+  ["pp","pl","pz","pgw","pr2","pai"].forEach(id=>document.getElementById(id).style.display="none");
+  const target = (p==='plan'?'pp':(p==='log'?'pl':(p==='zonen'?'pz':(p==='gewicht'?'pgw':(p==='prog'?'pr2':'pai')))));
+  document.getElementById(target).style.display="block";
+  document.querySelectorAll('.nb').forEach(b=>b.classList.toggle('on', b.innerText.toLowerCase().includes(p)));
+  if(p==='plan') rPlan(); else if(p==='log') rLog(); else if(p==='zonen') rZonen(); else if(p==='gewicht') rGewicht(); else if(p==='prog') rProg();
+}
 
-            const display = document.getElementById('ai-response');
-            display.innerText = "Claude berechnet deine Steigerung...";
+// RENDER PLAN
+function rPlan(){
+  const d=DAYS[pd],isD=done.has(pd);
+  let h=`<div class="hdr"><div class="hdr-t">Trainingsplan</div><div class="hdr-s">${DNAMES[pd].toUpperCase()} · 2026</div></div>
+  <div class="wk">${DAYS.map((x,i)=>`<div class="db ${i===pd?'on':''} ${done.has(i)?'dn':''}" onclick="pd=${i};rPlan()"><div class="ds">${x.s}</div><div class="dn2">${x.n}</div><div class="dd" style="background:${done.has(i)?'var(--accent)':'var(--border2)'}"></div></div>`).join('')}</div>
+  <div class="det">
+    <div class="dh"><div><div class="dt" style="color:${d.c}">${d.n}</div><div class="ds2">${d.sub}</div></div>
+    <button class="bdone ${isD?'on':''}" onclick="done.has(${pd})?done.delete(${pd}):done.add(${pd});saveData();rPlan()">${isD?'Abgeschlossen':'Tag beenden'}</button></div>
+    <div style="margin-bottom:12px">${d.tags.map(t=>`<span class="tag" style="background:${t.bg};color:${t.c}">${t.l}</span>`).join('')}</div>
+    ${d.secs.map(s=>`<div class="sl">${s.l}</div>${s.items.map(e=>`<div class="ex"><div class="en"><div>${e.n}</div><div class="eno">${e.note}</div></div><div class="es">${e.s}</div></div>`).join('')}`).join('')}
+    <div class="sl">Coach Tipps</div><div class="tip">${d.tips.map(t=>`<div class="tl">· ${t}</div>`).join('')}</div>
+    <div class="brow"><button class="ba" onclick="ld=${pd};setPage('log')">Training loggen</button></div>
+  </div>`;
+  document.getElementById("pp").innerHTML=h;
+}
 
-            try {
-                const response = await fetch('https://api.anthropic.com/v1/messages', {
-                    method: 'POST',
-                    headers: {
-                        'x-api-key': key,
-                        'anthropic-version': '2023-06-01',
-                        'content-type': 'application/json',
-                        'dangerously-allow-browser': 'true'
-                    },
-                    body: JSON.stringify({
-                        model: "claude-3-5-sonnet-20240620",
-                        max_tokens: 512,
-                        messages: [{
-                            role: "user", 
-                            content: `Analysiere meinen Fortschritt und sag mir, welche Gewichte ich als nächstes nehmen soll. Historie: ${JSON.stringify(logs.slice(-10))}`
-                        }]
-                    })
-                });
-                const data = await response.json();
-                display.innerHTML = data.content[0].text.replace(/\n/g, '<br>');
-            } catch (e) {
-                display.innerText = "Fehler: Verbindung zur KI fehlgeschlagen.";
-            }
-        }
-    </script>
+// RENDER LOG
+function rLog(){
+  const d=DAYS[ld];
+  let h=`<div class="hdr"><div class="hdr-t">Workout Log</div><div class="hdr-s">${d.n} · ${DNAMES[ld]}</div></div>
+  <div class="lw">
+    <div class="sl">Übung wählen</div><div class="ec">${d.ex.map(e=>`<div class="ech ${aex===e?'on':''}" onclick="aex='${e}';rLog()">${e}</div>`).join('')}</div>
+    <div class="lc">
+      <div class="ml">${aex}</div>
+      <div id="set-list">${sets.map((s,i)=>`<div class="sr"><div class="sn">${i+1}</div><input type="number" placeholder="kg" value="${s.kg}" oninput="sets[${i}].kg=this.value">
+      <input type="number" placeholder="reps" value="${s.reps}" oninput="sets[${i}].reps=this.value"><button onclick="sets.splice(${i},1);rLog()">×</button></div>`).join('')}</div>
+      <button style="width:100%;margin-top:10px" onclick="sets.push({kg:'',reps:''});rLog()">+ Satz hinzufügen</button>
+    </div>
+    <button class="ba" style="width:100%" onclick="saveLog()">Eintrag speichern</button>
+    <div class="sl">Historie (Heute)</div>
+    <div id="hist">${(tlog[ld]||[]).map(e=>`<div class="lh"><b>${e.ex}</b><br>${e.sets.map((s,i)=>`S${i+1}: ${s.kg}kg × ${s.reps}`).join(' · ')}</div>`).join('')}</div>
+  </div>`;
+  document.getElementById("pl").innerHTML=h;
+}
+
+function saveLog(){
+  if(!tlog[ld])tlog[ld]=[];
+  tlog[ld].push({ex:aex,sets:[...sets]});
+  sets=[{kg:"",reps:""}];
+  saveData(); rLog();
+}
+
+// RENDER ZONEN
+function rZonen(){
+  let h=`<div class="hdr"><div class="hdr-t">Zonen Tracking</div></div>
+  <div class="det">
+    <div class="lc"><div class="ml">Zone 1-3 (Minuten)</div><input type="number" id="z13-in" placeholder="z.B. 45">
+    <div class="ml" style="margin-top:10px">Zone 4-5 (Minuten)</div><input type="number" id="z45-in" placeholder="z.B. 10">
+    <button class="ba" style="margin-top:15px;width:100%" onclick="saveZ()">Speichern</button></div>
+  </div>`;
+  document.getElementById("pz").innerHTML=h;
+}
+function saveZ(){
+  const d=new Date().toLocaleDateString();
+  zlog[d]={z13:parseInt(document.getElementById("z13-in").value)||0,z45:parseInt(document.getElementById("z45-in").value)||0};
+  saveData(); alert("Gespeichert!");
+}
+
+// RENDER GEWICHT
+function rGewicht(){
+  let h=`<div class="hdr"><div class="hdr-t">Gewicht & Bulk</div></div>
+  <div class="det">
+    <div class="lc"><div class="ml">Aktuelles Gewicht (kg)</div><input type="number" step="0.1" id="gw-in">
+    <button class="ba" style="margin-top:10px;width:100%" onclick="saveGW()">Loggen</button></div>
+    <div class="lc"><div class="ml">Ziel-Einstellungen</div>
+    <input type="number" step="0.1" id="gs-start" value="${gwSettings.startWeight}" placeholder="Start">
+    <input type="number" step="0.1" id="gs-goal" value="${gwSettings.goalWeight}" placeholder="Ziel">
+    <button onclick="gwSettings.startWeight=document.getElementById('gs-start').value;gwSettings.goalWeight=document.getElementById('gs-goal').value;saveData();rGewicht()">Update</button></div>
+  </div>`;
+  document.getElementById("pgw").innerHTML=h;
+}
+function saveGW(){
+  gwlog.push({d:new Date().toLocaleDateString(),w:parseFloat(document.getElementById("gw-in").value)});
+  saveData(); rGewicht();
+}
+
+// RENDER PROGRESS
+function rProg(){
+  const lastW = gwlog.length?gwlog[gwlog.length-1].w:gwSettings.startWeight;
+  const perc = Math.min(100, Math.max(0, ((lastW-gwSettings.startWeight)/(gwSettings.goalWeight-gwSettings.startWeight))*100));
+  let h=`<div class="hdr"><div class="hdr-t">Dein Fortschritt</div></div>
+  <div class="mets">
+    <div class="met"><div class="ml">Bulk Status</div><div class="mv">${lastW} kg</div><div class="ms">Ziel: ${gwSettings.goalWeight} kg</div>
+    <div class="pb"><div class="pf" style="width:${perc}%;background:var(--accent)"></div></div></div>
+  </div>`;
+  document.getElementById("pr2").innerHTML=h;
+}
+
+// --- CLAUDE AI LOGIK ---
+async function runAI(){
+    const key = document.getElementById('api-key').value;
+    const out = document.getElementById('ai-out');
+    if(!key) return alert("Bitte API Key eingeben!");
+    
+    out.innerText = "Claude analysiert den Code...";
+    try {
+        const res = await fetch('https://api.anthropic.com/v1/messages', {
+            method: 'POST',
+            headers: { 'x-api-key': key, 'anthropic-version': '2023-06-01', 'content-type': 'application/json', 'dangerously-allow-browser': 'true' },
+            body: JSON.stringify({
+                model: "claude-3-5-sonnet-20240620",
+                max_tokens: 1500,
+                messages: [{role: "user", content: `Hier ist mein kompletter App-Code: ${document.documentElement.outerHTML}. Analyse den Plan und schlage 1 Tausch vor. Gib mir den Code-Block für das DAYS Array zurück, falls ich etwas ändern soll.`}]
+            })
+        });
+        const data = await res.json();
+        out.innerHTML = data.content[0].text.replace(/\n/g, '<br>');
+    } catch(e) { out.innerText = "Fehler bei der Anfrage."; }
+}
+
+loadData();
+setPage('plan');
+</script>
 </body>
 </html>
